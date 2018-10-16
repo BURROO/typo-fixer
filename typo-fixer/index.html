@@ -1,0 +1,54 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="src/typo-fixer.js"></script>
+</head>
+<body>
+    <form id="form">
+        <label>Enter Text</label>
+        <input type="textarea" id="input">
+        <input type="submit" id="submitButton">
+    </form>
+    <div id="output"></div>
+</body>
+<footer>
+    <script>
+        
+        var input = document.getElementById('input');
+        var output = document.getElementById('output');
+        var form = document.getElementById('form')
+        var submitButton = document.getElementById('submitButton')
+        var content = '';
+
+        var fixMyContent = new TypoFixer();
+
+        fixMyContent.params = {
+            fixDoubleSpaces: true,
+            fixWrongQuotes: true,
+            fixHyphen: true
+        }
+
+        input.addEventListener('keyup', function(){
+            content = input.value;
+            console.log(content);
+        });
+
+        output.addEventListener('submit', function(){
+            e.preventDefault();
+            fixMyContent.fix(content);
+            output.innerHTML = content;
+        });
+  
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            content = fixMyContent.fix(content);
+            output.innerHTML = content;
+        });
+    </script>
+</footer>
+</html>
